@@ -15,6 +15,22 @@ class Swoole extends Server
         'task_worker_num' => 1,
     ];
 
+    public function __construct()
+    {
+        parent::__construct();
+
+
+    }
+
+    public function initialize()
+    {
+        $config = Config::pull('swoole_server');
+        $this->serverType = $config['type'];
+        $this->host = $config['host'];
+        $this->port = $config['port'];
+        $this->option = $config['option'];
+    }
+
     //接收发送的消息
     public function onReceive($server, $fd, $from_id, $data)
     {

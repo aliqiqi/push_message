@@ -27,6 +27,12 @@ return [
     'daemonize'    => false,
     'pid_file'     => Env::get('runtime_path') . 'swoole_server.pid',
     'log_file'     => Env::get('runtime_path') . 'swoole_server.log',
+    'option' =>[
+        'worker_num'=> 4,
+        //'daemonize'   => true,//测试环境请注释此选项
+        'backlog'   => 128,
+        'task_worker_num' => 2,
+    ],
 
     // 事件回调定义
     'onOpen'       => function ($server, $request) {
