@@ -1,5 +1,5 @@
 <?php
-namespace app\http;
+namespace app\lib\swoole;
 
 use think\swoole\Server;
 use app\lib\swoole\Task;
