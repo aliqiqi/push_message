@@ -52,6 +52,7 @@ class Send
             echo '邮件发送成功';
         }catch(Exception $e)
         {
+            //或日志记录
             throw new PushException([
                 'code'=>'500',
                 'msg'=>'邮件发送失败：',$mail->ErrorInfo

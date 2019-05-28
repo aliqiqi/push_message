@@ -7,6 +7,7 @@
 */
 namespace app\lib\swoole;
 use app\lib\exception\push\SwooleException;
+use app\lib\exception\push\PushException;
 use Swoole\Client;
 use think\Controller;
 use think\facade\Config;
@@ -48,10 +49,17 @@ class Pclient extends Controller
      *发送邮件
      * */
     public function sSend($data){
-        if(is_array($data))
+        
+       if(empty($data) ||!is_array($data) || empty($data['method']) || empty($data['data']))
         {
-            $data = json_encode($data);
+            throw new PushException([
+                'code' => '401',
+                'msg'=>'缺少参数或格式错误'
+            ]);
         }
+
+        $data = json_encode($data);
+        
         $this->client->send($data);
         return true;
     }

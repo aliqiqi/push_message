@@ -25,11 +25,7 @@ class Swoole extends Server
         //处理
         $obj = new Task();
         $data = json_decode($data,true);
-        if(empty($data) || empty($data['method']) || empty($data['data']))
-        {
-            echo '缺少参数';
-        }
-
+        //日志记录
         $method = $data['method'];
         $flag = $obj->$method($data['data']);
         return $flag;
