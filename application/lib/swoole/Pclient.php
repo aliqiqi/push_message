@@ -57,7 +57,7 @@ class Pclient extends Controller
                 'msg'=>'缺少参数或格式错误'
             ]);
         }
-
+        $data['data'] = isset($data['data'])?$data['data']:[];
         $data = json_encode($data);
         
         $this->client->send($data);

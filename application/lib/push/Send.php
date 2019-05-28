@@ -23,11 +23,9 @@ class Send
     {
         if(empty($data))
         {
-            //返回错误
-           throw new PushException([
-               'code'=>'400',
-               'msg'=>'参数错误'
-           ]);
+            //记录日志
+            echo '参数不能为空';
+           
         }
         try{
             $mail = new PHPMailer($this->config['debug']);
