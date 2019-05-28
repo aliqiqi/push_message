@@ -9,12 +9,11 @@ namespace app\lib\swoole;
 use app\lib\exception\push\SwooleException;
 use app\lib\exception\push\PushException;
 use Swoole\Client;
-use think\Controller;
 use think\facade\Config;
 /*
  *
  * */
-class Pclient extends Controller
+class Pclient
 {
     public $client = "";
     /*

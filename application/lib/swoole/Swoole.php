@@ -43,8 +43,4 @@ class Swoole extends Server
         //处理完成返回值
         print_r($data);
     }
-    public function onRequest($request, $response)
-    {
-
-    }
 }

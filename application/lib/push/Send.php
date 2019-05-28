@@ -38,12 +38,16 @@ class Send
             $mail->SMTPSecure = $this->config['smtp_secure'];
             $mail -> Port = $this->config['port'];
             $mail -> setFrom($this->config['username'],$this->config['send_name']);
-            $mail->addAddress($data['to'],'');
+            foreach($data['to'] as $v)
+            {
+                $mail->addAddress($v,'');
+            }
             $mail->addReplyTo($this->config['username'],'info');
             $mail -> isHTML($this->config['is_html']);
             $mail -> Subject = $data['title'];
             $mail -> Body = $data['content'];
             $mail -> AltBody = $this->config['alt_body'];
+            // $mail->WordWrap = 50;                                 //多少字换行
 //            $mail->addAttachment('/data/wwwroot/PHP7.3.pdf');         // Add attachments 添加附件
 //            $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name 发送附件并重命名
             $mail -> send();
