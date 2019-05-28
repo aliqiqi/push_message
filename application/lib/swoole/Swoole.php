@@ -3,33 +3,25 @@ namespace app\lib\swoole;
 
 use think\swoole\Server;
 use app\lib\swoole\Task;
+use think\facade\Config;
 class Swoole extends Server
 {
-    protected $host = '127.0.0.1';
-    protected $port = 9501;
-    protected $serverType = 'server';
-    protected $option = [
-        'worker_num'=> 4,
-        //'daemonize'	=> true,//测试环境请注释此选项
-        'backlog'	=> 128,
-        'task_worker_num' => 1,
-    ];
+    protected $host;
+    protected $port;
+    protected $serverType;
+    protected $option;
 
     public function __construct()
     {
+        $this->serverType = Config::get('swoole_server.type');
+        $this->host = Config::get('swoole_server.host');
+        $this->port = Config::get('swoole_server.port');
+        $this->option = Config::get('swoole_server.option');
         parent::__construct();
 
 
     }
 
-    public function initialize()
-    {
-        $config = Config::pull('swoole_server');
-        $this->serverType = $config['type'];
-        $this->host = $config['host'];
-        $this->port = $config['port'];
-        $this->option = $config['option'];
-    }
 
     //接收发送的消息
     public function onReceive($server, $fd, $from_id, $data)
