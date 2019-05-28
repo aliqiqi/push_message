@@ -50,7 +50,7 @@ class Pclient extends Controller
      * */
     public function sSend($data){
         
-       if(empty($data) ||!is_array($data) || empty($data['method']) || empty($data['data']))
+       if(empty($data) ||!is_array($data) || empty($data['method']))
         {
             throw new PushException([
                 'code' => '401',

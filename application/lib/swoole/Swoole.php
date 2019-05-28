@@ -33,9 +33,16 @@ class Swoole extends Server
         //处理
         $obj = new Task();
         $data = json_decode($data,true);
+
+        //查看是否携带数据
+        $keys = array_keys($data);
         //日志记录
         $method = $data['method'];
-        $flag = $obj->$method($data['data']);
+        if(count($keys) == 1){
+            $flag = $obj->$method();
+        }else{
+            $flag = $obj->$method($data[$keys[1]]);
+        }
         return $flag;
     }
     public function onFinish($server, $task_id, $data)
